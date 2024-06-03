@@ -1,0 +1,97 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-grid-list cols="2" rowHeight="1000px">
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <mat-card class="dashboard-card" *ngIf="character">
+        <mat-card-header>
+          <mat-card-title>
+            {{character!.name}}
+          </mat-card-title>
+          <mat-slide-toggle class="edit-slider" (toggleChange)="isEditing = !isEditing"> Edit
+          </mat-slide-toggle>
+        </mat-card-header>
+
+        <!-- Display Content -->
+        <mat-card-content *ngIf="!isEditing">
+
+          <!-- Ability Values -->
+          <div class="ability-group" *ngIf="character.statistics?.abilities">
+            <div class="stack" *ngFor="let ability of character.statistics?.abilities">
+              <div class="ability-name">
+                {{ability.name}}
+              </div>
+              <div class="ability-modifier">
+                {{ability.offset}}
+              </div>
+              <div class="ability-score">
+                {{ability.score}}
+              </div>
+            </div>
+          </div>
+
+          <!-- Health -->
+          <div class="health">
+            <div class="health-title">
+              <div class="health-group-title">Health</div>
+              <div class="health-group-title">Resistances</div>
+            </div>
+            <mat-grid-list cols="2" rowHeight="2:1">
+              <mat-grid-tile>
+                <div class="internal-grid">
+                <mat-grid-list cols="2" rowHeight="4rem" class="health">
+                  <mat-grid-tile class="health-input">
+                    <mat-form-field appearance="outline">
+                      <input matInput type="number" #currentHealth [value]="character.statistics?.hitpoints"
+                        (change)="character.statistics!.hitpoints = currentHealth.valueAsNumber" />
+                      </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1" rowspan="2">
+                      <mat-progress-spinner mode="determinate" [value]="characterHealthPercent"></mat-progress-spinner>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                    {{character.statistics?.hitpoints_max}}
+                  </mat-grid-tile>
+                </mat-grid-list>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+          
+          <button mat-button (click)="DebugLog()">Submit</button>
+        </mat-card-content>
+
+
+        <!-- Editing Content -->
+        <mat-card-content *ngIf="isEditing">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput #name [value]="character!.name" (change)="character!.name = name.value" />
+          </mat-form-field>
+
+          <div class="ability-group" *ngIf="character.statistics?.abilities">
+            <div class="edit-stack" *ngFor="let ability of character.statistics?.abilities">
+              <div class="ability-name">
+                {{ability.name}}
+              </div>
+              <div class="ability-modifier">
+                {{ability.offset}}
+              </div>
+              <div class="ability-score">
+                {{ability.score}}
+              </div>
+            </div>
+          </div>
+
+          <!-- Health -->
+          <div class="edit-health">
+            <mat-form-field>
+              <mat-label>Current health</mat-label>
+              <input matInput type="number" #currentHealth [value]="character.statistics?.hitpoints"
+                (change)="character.statistics!.hitpoints = currentHealth.valueAsNumber" />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

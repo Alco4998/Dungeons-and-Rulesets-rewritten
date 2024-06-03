@@ -1,0 +1,90 @@
+.internal-grid {
+  min-width: 80%;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+mat-form-field {
+  width: 90%;
+}
+
+.edit-slider {
+  margin-left: auto;
+}
+
+.health {
+  .health-title {
+    width: 100%;
+    display: inline-flex;
+
+    .health-group-title {
+      justify-content: center;
+      text-align: center;
+      margin: 1rem auto;
+    }
+  }
+
+  .health-input {
+    padding-top: 1rem;
+  }
+}
+
+.display-form {
+  margin-left: 5%;
+  display: flex;
+  align-items: baseline;
+
+  h3 {
+    margin-left: 0%;
+    margin-right: 1%;
+    width: max-content;
+  }
+}
+
+.ability-group {
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+
+  .stack,
+  .edit-stack {
+    display: block;
+    justify-content: inherit;
+
+    margin: 0.5rem;
+    padding: 0.2rem;
+
+    border: 2px black;
+    border-style: solid;
+    border-radius: 1rem;
+
+    .ability-score {
+      width: fit-content;
+      margin: auto;
+      padding: 0 0.5rem;
+
+      border: 2px black;
+      border-style: solid;
+      border-radius: 1rem;
+    }
+
+    .ability-modifier {
+      font-size: 2rem;
+      margin: 0.5rem auto;
+
+    }
+  }
+
+  .mat-input-element:disabled {
+    border-style: none;
+  }
+}
+
+.edit-title-input {
+  margin: -0.5rem auto;
+}
